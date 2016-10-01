@@ -1,0 +1,16 @@
+
+1. Enabled the event_scheduler in the db like this:
+
+ SET GLOBAL event_scheduler = ON;
+   
+ 2. create an event, 
+CREATE EVENT <name>
+    
+Called the event to run on a schedule like so: 
+ON SCHEDULE EVERY 20 SECOND
+    Add the SQL query to the event: DO DELETE FROM <table_name> WHERE <time_stamp_column> < NOW() - INTERVAL 5 MINUTE
+
+
+CREATE EVENT IF NOT EXISTS `expirer` ON SCHEDULE EVERY 60 SECOND
+ DO
+ DELETE FROM `users` WHERE `expdate` < NOW();

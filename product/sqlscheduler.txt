@@ -1,0 +1,5 @@
+
+
+CREATE EVENT IF NOT EXISTS `expirer` ON SCHEDULE EVERY 60 SECOND
+ DO
+ DELETE FROM `users` WHERE `expdate` < NOW();
